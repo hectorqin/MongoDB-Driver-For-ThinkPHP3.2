@@ -6,7 +6,7 @@ MongoDB-Driver-For-ThinkPHP3.2
 ****
 This repository is modified from [admpub/MongoDB-Driver-for-ThinkPHP](https://github.com/admpub/MongoDB-Driver-for-ThinkPHP), adapted for ThinkPHP3.2. It requres the new driver of mongodb that includes PHPLIBs and the php extension of mongodb
 
-##usage
+## Usage
 Put the model and db driver into the right folder, and write your model file extends 'MongodbModel'.For example:
 ```PHP
 namespace Home\Model;

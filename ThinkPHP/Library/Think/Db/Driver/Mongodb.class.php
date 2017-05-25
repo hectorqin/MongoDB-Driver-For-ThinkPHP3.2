@@ -790,11 +790,11 @@ class Mongodb extends Driver {
                     $k = '$' . $this->comparison[$con];
                     $query[$key] = array($k => $val[1]);
                 } elseif ('like' == $con) { // 模糊查询 采用正则方式
-                    $query[$key] = new MongoRegex("/" . $val[1] . "/");
+                    $query[$key] = new \MongoDB\BSON\Regex("/" . $val[1] . "/");
                 } elseif ('mod' == $con) { // mod 查询
                     $query[$key] = array('$mod' => $val[1]);
                 } elseif ('regex' == $con) { // 正则查询
-                    $query[$key] = new MongoRegex($val[1]);
+                    $query[$key] = new \MongoDB\BSON\Regex($val[1]);
                 } elseif (in_array($con, array('in', 'nin', 'not in'))) { // IN NIN 运算
                     $data = is_string($val[1]) ? explode(',', $val[1]) : $val[1];
                     $k = '$' . $this->comparison[$con];
@@ -809,7 +809,7 @@ class Mongodb extends Driver {
                     $data = is_string($val[1]) ? explode(',', $val[1]) : $val[1];
                     $query[$key] = array('$lt' => $data[0], '$gt' => $data[1]);
                 } elseif ('exp' == $con) { // 表达式查询
-                    $query['$where'] = new MongoCode($val[1]);
+                    $query['$where'] = new \MongoDB\BSON\Javascript($val[1]);
                 } elseif ('exists' == $con) { // 字段是否存在
                     $query[$key] = array('$exists' => (bool)$val[1]);
                 } elseif ('size' == $con) { // 限制属性大小
